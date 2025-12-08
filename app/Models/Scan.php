@@ -12,6 +12,7 @@ class Scan extends Model
         'email',
         'phone',
         'ip_address',
+        'gift_status',
     ];
 
     public function qrCode()

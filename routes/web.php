@@ -38,6 +38,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Customer Scans Management
         Route::resource('scans', AdminScanController::class)->except(['create', 'store']);
+        Route::post('scans/{scan}/update-status', [AdminScanController::class, 'updateStatus'])->name('scans.updateStatus');
         Route::get('scans-export', [AdminScanController::class, 'export'])->name('scans.export');
     });
 });

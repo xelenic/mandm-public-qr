@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Admin Panel') - {{ config('app.name', 'Laravel') }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -56,13 +57,21 @@
         }
 
         .sidebar-nav a {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             padding: 12px 20px;
             color: #6b7280;
             text-decoration: none;
             transition: all 0.3s;
             border-left: 3px solid transparent;
             border-radius: 0;
+        }
+
+        .sidebar-nav a i {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
         }
 
         .sidebar-nav a:hover,
@@ -223,27 +232,32 @@
             <ul class="sidebar-nav">
                 <li>
                     <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                        Dashboard
+                        <i class="fa fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                        Users
+                        <i class="fa fa-users"></i>
+                        <span>Users</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.gifts.index') }}" class="{{ request()->routeIs('admin.gifts.*') ? 'active' : '' }}">
-                        Gifts
+                        <i class="fa fa-gift"></i>
+                        <span>Gifts</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.qrcodes.index') }}" class="{{ request()->routeIs('admin.qrcodes.*') ? 'active' : '' }}">
-                        QR Codes
+                        <i class="fa fa-qrcode"></i>
+                        <span>QR Codes</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.scans.index') }}" class="{{ request()->routeIs('admin.scans.*') ? 'active' : '' }}">
-                        Customer Scans
+                        <i class="fa fa-camera"></i>
+                        <span>Customer Scans</span>
                     </a>
                 </li>
             </ul>

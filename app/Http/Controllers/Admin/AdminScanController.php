@@ -25,6 +25,11 @@ class AdminScanController extends Controller
             });
         }
 
+        // Gift status filter
+        if ($request->gift_status) {
+            $query->where('gift_status', $request->gift_status);
+        }
+
         // Date filter
         if ($request->date_from) {
             $query->whereDate('created_at', '>=', $request->date_from);
@@ -64,6 +69,7 @@ class AdminScanController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
+            'gift_status' => 'required|in:pending,confirmed,sent,delivered',
         ]);
 
         $scan->update($validated);
@@ -84,6 +90,21 @@ class AdminScanController extends Controller
     }
 
     /**
+     * Update gift status
+     */
+    public function updateStatus(Request $request, Scan $scan)
+    {
+        $validated = $request->validate([
+            'gift_status' => 'required|in:pending,confirmed,sent,delivered',
+        ]);
+
+        $scan->update($validated);
+
+        return redirect()->back()
+            ->with('success', 'Gift status updated successfully.');
+    }
+
+    /**
      * Export scans to CSV
      */
     public function export(Request $request)
@@ -98,6 +119,10 @@ class AdminScanController extends Controller
                   ->orWhere('email', 'like', "%{$search}%")
                   ->orWhere('phone', 'like', "%{$search}%");
             });
+        }
+
+        if ($request->gift_status) {
+            $query->where('gift_status', $request->gift_status);
         }
 
         if ($request->date_from) {
@@ -120,7 +145,7 @@ class AdminScanController extends Controller
             $file = fopen('php://output', 'w');
             
             // Add CSV headers
-            fputcsv($file, ['ID', 'Name', 'Email', 'Phone', 'QR Code', 'Gift', 'IP Address', 'Scanned At']);
+            fputcsv($file, ['ID', 'Name', 'Email', 'Phone', 'QR Code', 'Gift', 'Gift Status', 'IP Address', 'Scanned At']);
 
             // Add data rows
             foreach ($scans as $scan) {
@@ -131,6 +156,7 @@ class AdminScanController extends Controller
                     $scan->phone,
                     $scan->qrCode->code ?? 'N/A',
                     $scan->qrCode->gift->name ?? 'N/A',
+                    ucfirst($scan->gift_status ?? 'pending'),
                     $scan->ip_address ?? 'N/A',
                     $scan->created_at->format('Y-m-d H:i:s'),
                 ]);

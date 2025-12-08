@@ -37,6 +37,19 @@
                 style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
         </div>
 
+        <div style="margin-bottom: 20px;">
+            <label for="gift_status" style="display: block; margin-bottom: 8px; font-weight: 500; color: #374151;">
+                Gift Status <span style="color: #dc2626;">*</span>
+            </label>
+            <select name="gift_status" id="gift_status" required
+                style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; background: white; cursor: pointer;">
+                <option value="pending" {{ old('gift_status', $scan->gift_status) === 'pending' ? 'selected' : '' }}>⏳ Pending</option>
+                <option value="confirmed" {{ old('gift_status', $scan->gift_status) === 'confirmed' ? 'selected' : '' }}>✓ Confirmed</option>
+                <option value="sent" {{ old('gift_status', $scan->gift_status) === 'sent' ? 'selected' : '' }}>📦 Sent</option>
+                <option value="delivered" {{ old('gift_status', $scan->gift_status) === 'delivered' ? 'selected' : '' }}>✅ Delivered</option>
+            </select>
+        </div>
+
         <!-- Read-only information -->
         <div style="margin-top: 30px; padding: 20px; background: #f9fafb; border-radius: 8px;">
             <h4 style="margin-bottom: 15px; color: #374151;">Additional Information (Read-only)</h4>
@@ -53,6 +66,21 @@
                     <strong style="color: #6b7280; font-size: 12px; display: block; margin-bottom: 5px;">Gift Won:</strong>
                     <span style="padding: 6px 10px; background: #dbeafe; color: #1e40af; border-radius: 4px; font-size: 13px; display: inline-block;">
                         {{ $scan->qrCode->gift->name ?? 'N/A' }}
+                    </span>
+                </div>
+
+                <div>
+                    <strong style="color: #6b7280; font-size: 12px; display: block; margin-bottom: 5px;">Current Gift Status:</strong>
+                    <span style="padding: 6px 10px; background: {{ 
+                        $scan->gift_status === 'delivered' ? '#d1fae5' : 
+                        ($scan->gift_status === 'sent' ? '#dbeafe' : 
+                        ($scan->gift_status === 'confirmed' ? '#fef3c7' : '#f3f4f6')) 
+                    }}; color: {{ 
+                        $scan->gift_status === 'delivered' ? '#065f46' : 
+                        ($scan->gift_status === 'sent' ? '#1e40af' : 
+                        ($scan->gift_status === 'confirmed' ? '#92400e' : '#6b7280')) 
+                    }}; border-radius: 4px; font-size: 13px; display: inline-block;">
+                        {{ ucfirst($scan->gift_status ?? 'pending') }}
                     </span>
                 </div>
 

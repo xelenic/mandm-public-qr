@@ -20,11 +20,21 @@
     <!-- Filters Panel -->
     <div id="filtersPanel" style="display: none; padding: 20px; background: #f9fafb; border-bottom: 1px solid #e5e7eb;">
         <form method="GET" action="{{ route('admin.scans.index') }}">
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 15px;">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 15px;">
                 <div>
                     <label style="display: block; margin-bottom: 5px; font-weight: 500; color: #374151; font-size: 14px;">Search</label>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Name, email, or phone..."
                         style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+                </div>
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: 500; color: #374151; font-size: 14px;">Gift Status</label>
+                    <select name="gift_status" style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; background: white;">
+                        <option value="">All Statuses</option>
+                        <option value="pending" {{ request('gift_status') === 'pending' ? 'selected' : '' }}>⏳ Pending</option>
+                        <option value="confirmed" {{ request('gift_status') === 'confirmed' ? 'selected' : '' }}>✓ Confirmed</option>
+                        <option value="sent" {{ request('gift_status') === 'sent' ? 'selected' : '' }}>📦 Sent</option>
+                        <option value="delivered" {{ request('gift_status') === 'delivered' ? 'selected' : '' }}>✅ Delivered</option>
+                    </select>
                 </div>
                 <div>
                     <label style="display: block; margin-bottom: 5px; font-weight: 500; color: #374151; font-size: 14px;">Date From</label>
@@ -49,61 +59,81 @@
     </div>
 
     <div style="overflow-x: auto;">
-        <table style="width: 100%; border-collapse: collapse;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
             <thead>
                 <tr style="background: #f9fafb; border-bottom: 2px solid #e5e7eb;">
-                    <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151;">ID</th>
-                    <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151;">Customer Name</th>
-                    <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151;">Email</th>
-                    <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151;">Phone</th>
-                    <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151;">QR Code</th>
-                    <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151;">Gift Won</th>
-                    <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151;">Scan Date</th>
-                    <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151;">Actions</th>
+                    <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">ID</th>
+                    <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">Customer</th>
+                    <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">Email</th>
+                    <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">Phone</th>
+                    <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">QR Code</th>
+                    <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">Gift</th>
+                    <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">Status</th>
+                    <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">Scan Date</th>
+                    <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($scans as $scan)
                     <tr style="border-bottom: 1px solid #e5e7eb;">
-                        <td style="padding: 12px;">{{ $scan->id }}</td>
-                        <td style="padding: 12px;">
-                            <strong style="color: #1f2937;">{{ $scan->name }}</strong>
+                        <td style="padding: 8px 10px;">{{ $scan->id }}</td>
+                        <td style="padding: 8px 10px;">
+                            <strong style="color: #1f2937; font-size: 13px;">{{ $scan->name }}</strong>
                         </td>
-                        <td style="padding: 12px;">
-                            <a href="mailto:{{ $scan->email }}" style="color: #2563eb; text-decoration: none;">
+                        <td style="padding: 8px 10px;">
+                            <a href="mailto:{{ $scan->email }}" style="color: #2563eb; text-decoration: none; font-size: 12px;">
                                 {{ $scan->email }}
                             </a>
                         </td>
-                        <td style="padding: 12px;">
-                            <a href="tel:{{ $scan->phone }}" style="color: #2563eb; text-decoration: none;">
+                        <td style="padding: 8px 10px;">
+                            <a href="tel:{{ $scan->phone }}" style="color: #2563eb; text-decoration: none; font-size: 12px;">
                                 {{ $scan->phone }}
                             </a>
                         </td>
-                        <td style="padding: 12px;">
-                            <code style="padding: 4px 8px; background: #f3f4f6; color: #374151; border-radius: 4px; font-size: 12px;">
+                        <td style="padding: 8px 10px;">
+                            <code style="padding: 3px 6px; background: #f3f4f6; color: #374151; border-radius: 3px; font-size: 11px;">
                                 {{ $scan->qrCode->code ?? 'N/A' }}
                             </code>
                         </td>
-                        <td style="padding: 12px;">
-                            <span style="padding: 4px 12px; background: #dbeafe; color: #1e40af; border-radius: 12px; font-size: 12px;">
+                        <td style="padding: 8px 10px;">
+                            <span style="padding: 3px 8px; background: #dbeafe; color: #1e40af; border-radius: 10px; font-size: 11px; white-space: nowrap;">
                                 {{ $scan->qrCode->gift->name ?? 'N/A' }}
                             </span>
                         </td>
-                        <td style="padding: 12px;">
+                        <td style="padding: 8px 10px;">
+                            <form action="{{ route('admin.scans.updateStatus', $scan) }}" method="POST" style="margin: 0;">
+                                @csrf
+                                <select name="gift_status" onchange="this.form.submit()" style="padding: 4px 8px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 11px; cursor: pointer; background: {{ 
+                                    $scan->gift_status === 'delivered' ? '#d1fae5' : 
+                                    ($scan->gift_status === 'sent' ? '#dbeafe' : 
+                                    ($scan->gift_status === 'confirmed' ? '#fef3c7' : '#f3f4f6')) 
+                                }}; color: {{ 
+                                    $scan->gift_status === 'delivered' ? '#065f46' : 
+                                    ($scan->gift_status === 'sent' ? '#1e40af' : 
+                                    ($scan->gift_status === 'confirmed' ? '#92400e' : '#6b7280')) 
+                                }};">
+                                    <option value="pending" {{ $scan->gift_status === 'pending' ? 'selected' : '' }}>⏳ Pending</option>
+                                    <option value="confirmed" {{ $scan->gift_status === 'confirmed' ? 'selected' : '' }}>✓ Confirmed</option>
+                                    <option value="sent" {{ $scan->gift_status === 'sent' ? 'selected' : '' }}>📦 Sent</option>
+                                    <option value="delivered" {{ $scan->gift_status === 'delivered' ? 'selected' : '' }}>✅ Delivered</option>
+                                </select>
+                            </form>
+                        </td>
+                        <td style="padding: 8px 10px; font-size: 12px; white-space: nowrap;">
                             {{ $scan->created_at->format('M d, Y H:i') }}
                         </td>
-                        <td style="padding: 12px;">
-                            <div style="display: flex; gap: 8px;">
-                                <a href="{{ route('admin.scans.show', $scan) }}" style="padding: 6px 12px; background: #dbeafe; color: #1e40af; text-decoration: none; border-radius: 4px; font-size: 12px;">
+                        <td style="padding: 8px 10px;">
+                            <div style="display: flex; gap: 5px; white-space: nowrap;">
+                                <a href="{{ route('admin.scans.show', $scan) }}" style="padding: 5px 10px; background: #dbeafe; color: #1e40af; text-decoration: none; border-radius: 4px; font-size: 11px;">
                                     View
                                 </a>
-                                <a href="{{ route('admin.scans.edit', $scan) }}" style="padding: 6px 12px; background: #f3f4f6; color: #374151; text-decoration: none; border-radius: 4px; font-size: 12px;">
+                                <a href="{{ route('admin.scans.edit', $scan) }}" style="padding: 5px 10px; background: #f3f4f6; color: #374151; text-decoration: none; border-radius: 4px; font-size: 11px;">
                                     Edit
                                 </a>
                                 <form action="{{ route('admin.scans.destroy', $scan) }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this record?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" style="padding: 6px 12px; background: #fee2e2; color: #991b1b; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">
+                                    <button type="submit" style="padding: 5px 10px; background: #fee2e2; color: #991b1b; border: none; border-radius: 4px; font-size: 11px; cursor: pointer;">
                                         Delete
                                     </button>
                                 </form>
@@ -112,7 +142,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" style="padding: 40px; text-align: center; color: #6b7280;">
+                        <td colspan="9" style="padding: 40px; text-align: center; color: #6b7280;">
                             No customer scans found.
                         </td>
                     </tr>
@@ -156,7 +186,7 @@
     }
 
     // Show filters if any filter is active
-    @if(request('search') || request('date_from') || request('date_to'))
+    @if(request('search') || request('gift_status') || request('date_from') || request('date_to'))
         document.getElementById('filtersPanel').style.display = 'block';
     @endif
 </script>
