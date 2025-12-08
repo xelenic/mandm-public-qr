@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Scan extends Model
+{
+    protected $fillable = [
+        'qr_code_id',
+        'name',
+        'email',
+        'phone',
+        'ip_address',
+    ];
+
+    public function qrCode()
+    {
+        return $this->belongsTo(QRCode::class, 'qr_code_id');
+    }
+
+    public function gift()
+    {
+        return $this->qrCode->gift ?? null;
+    }
+}
