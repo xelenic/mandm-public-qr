@@ -15,7 +15,7 @@ class AdminQRCodeController extends Controller
     public function index()
     {
         $qrCodes = QRCode::with(['gift', 'scan'])
-            ->orderBy('created_at', 'desc')
+            ->orderByRaw('CAST(id AS INTEGER) ASC')
             ->paginate(20);
         
         return view('admin.qrcodes.index', compact('qrCodes'));
@@ -179,7 +179,7 @@ class AdminQRCodeController extends Controller
             $query->limit($request->limit);
         }
 
-        $qrCodes = $query->orderBy('created_at', 'desc')->get();
+        $qrCodes = $query->orderBy('created_at', 'asc')->get();
         $size = $request->size ?? 'medium';
 
         return view('admin.qrcodes.print', compact('qrCodes', 'size'));
