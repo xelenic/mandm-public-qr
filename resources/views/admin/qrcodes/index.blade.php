@@ -67,7 +67,10 @@
                         <td style="padding: 12px;">
                             <div style="display: flex; gap: 8px;">
                                 <a href="{{ route('admin.qrcodes.download', $qrCode) }}" style="padding: 6px 12px; background: #dbeafe; color: #1e40af; text-decoration: none; border-radius: 4px; font-size: 12px;">
-                                    Download
+                                    📥 PNG
+                                </a>
+                                <a href="{{ route('admin.qrcodes.downloadSvg', $qrCode) }}" style="padding: 6px 12px; background: #ecfdf5; color: #065f46; text-decoration: none; border-radius: 4px; font-size: 12px;">
+                                    🎨 SVG
                                 </a>
                                 <a href="{{ route('admin.qrcodes.edit', $qrCode) }}" style="padding: 6px 12px; background: #f3f4f6; color: #374151; text-decoration: none; border-radius: 4px; font-size: 12px;">
                                     Edit

@@ -151,6 +151,21 @@ class AdminQRCodeController extends Controller
     }
 
     /**
+     * Download QR code as SVG
+     */
+    public function downloadSvg(QRCode $qrcode)
+    {
+        $url = route('qr.scan', ['code' => $qrcode->code]);
+        
+        // Generate QR code as SVG and return as download
+        return response()->streamDownload(function () use ($url) {
+            echo \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(300)->generate($url);
+        }, "qrcode-{$qrcode->code}.svg", [
+            'Content-Type' => 'image/svg+xml',
+        ]);
+    }
+
+    /**
      * Print QR codes sheet
      */
     public function print(Request $request)

@@ -35,8 +35,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('qrcodes/bulk-delete', [AdminQRCodeController::class, 'bulkDelete'])->name('qrcodes.bulkDelete');
         Route::delete('qrcodes/truncate', [AdminQRCodeController::class, 'truncate'])->name('qrcodes.truncate');
         Route::get('qrcodes-print', [AdminQRCodeController::class, 'print'])->name('qrcodes.print');
-        Route::resource('qrcodes', AdminQRCodeController::class);
         Route::get('qrcodes/{qrcode}/download', [AdminQRCodeController::class, 'download'])->name('qrcodes.download');
+        Route::get('qrcodes/{qrcode}/download-svg', [AdminQRCodeController::class, 'downloadSvg'])->name('qrcodes.downloadSvg');
+        Route::resource('qrcodes', AdminQRCodeController::class);
 
         // Customer Scans Management
         Route::resource('scans', AdminScanController::class)->except(['create', 'store']);
