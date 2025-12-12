@@ -109,6 +109,34 @@ class AdminQRCodeController extends Controller
     }
 
     /**
+     * Bulk delete QR codes
+     */
+    public function bulkDelete(Request $request)
+    {
+        $validated = $request->validate([
+            'ids' => 'required|array',
+            'ids.*' => 'required|exists:qr_codes,id',
+        ]);
+
+        $count = QRCode::whereIn('id', $validated['ids'])->delete();
+
+        return redirect()->route('admin.qrcodes.index')
+            ->with('success', "{$count} QR Code(s) deleted successfully.");
+    }
+
+    /**
+     * Truncate all QR codes
+     */
+    public function truncate()
+    {
+        $count = QRCode::count();
+        QRCode::truncate();
+
+        return redirect()->route('admin.qrcodes.index')
+            ->with('success', "All {$count} QR Code(s) have been permanently deleted.");
+    }
+
+    /**
      * Download QR code image
      */
     public function download(QRCode $qrcode)

@@ -7,7 +7,13 @@
 <div class="card">
     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
         <h3>All QR Codes</h3>
-        <div style="display: flex; gap: 10px;">
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <button id="bulkDeleteBtn" onclick="bulkDelete()" style="display: none; padding: 10px 20px; background: #dc2626; color: white; border: none; border-radius: 6px; font-size: 14px; cursor: pointer;">
+                🗑️ Delete Selected (<span id="selectedCount">0</span>)
+            </button>
+            <button onclick="truncateQRCodes()" style="padding: 10px 20px; background: #991b1b; color: white; border: none; border-radius: 6px; display: inline-block; font-size: 14px; cursor: pointer;">
+                ⚠️ Truncate All QR Codes
+            </button>
             <button onclick="openPrintModal()" style="padding: 10px 20px; background: #8b5cf6; color: white; border: none; border-radius: 6px; display: inline-block; font-size: 14px; cursor: pointer;">
                 🖨️ Print QR Codes
             </button>
@@ -24,6 +30,9 @@
         <table style="width: 100%; border-collapse: collapse;">
             <thead>
                 <tr style="background: #f9fafb; border-bottom: 2px solid #e5e7eb;">
+                    <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151; width: 50px;">
+                        <input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)" style="cursor: pointer; width: 18px; height: 18px;">
+                    </th>
                     <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151;">ID</th>
                     <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151;">Code</th>
                     <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151;">Gift</th>
@@ -36,6 +45,9 @@
             <tbody>
                 @forelse($qrCodes as $qrCode)
                     <tr style="border-bottom: 1px solid #e5e7eb;">
+                        <td style="padding: 12px; text-align: center;">
+                            <input type="checkbox" class="qr-checkbox" value="{{ $qrCode->id }}" onchange="updateBulkDeleteButton()" style="cursor: pointer; width: 18px; height: 18px;">
+                        </td>
                         <td style="padding: 12px;">{{ $qrCode->id }}</td>
                         <td style="padding: 12px;">
                             <code style="padding: 4px 8px; background: #f3f4f6; color: #374151; border-radius: 4px; font-size: 12px;">
@@ -72,7 +84,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" style="padding: 40px; text-align: center; color: #6b7280;">
+                        <td colspan="8" style="padding: 40px; text-align: center; color: #6b7280;">
                             No QR codes found. <a href="{{ route('admin.qrcodes.create') }}" style="color: #2563eb; text-decoration: none;">Generate your first QR codes</a>
                         </td>
                     </tr>
@@ -268,6 +280,83 @@
         document.getElementById('printModal').style.display = 'none';
     }
 
+    // Toggle select all checkboxes
+    function toggleSelectAll(selectAllCheckbox) {
+        const checkboxes = document.querySelectorAll('.qr-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = selectAllCheckbox.checked;
+        });
+        updateBulkDeleteButton();
+    }
+
+    // Update bulk delete button visibility and count
+    function updateBulkDeleteButton() {
+        const checkboxes = document.querySelectorAll('.qr-checkbox:checked');
+        const count = checkboxes.length;
+        const bulkDeleteBtn = document.getElementById('bulkDeleteBtn');
+        const selectedCount = document.getElementById('selectedCount');
+        
+        if (count > 0) {
+            bulkDeleteBtn.style.display = 'inline-block';
+            selectedCount.textContent = count;
+        } else {
+            bulkDeleteBtn.style.display = 'none';
+        }
+
+        // Update select all checkbox state
+        const allCheckboxes = document.querySelectorAll('.qr-checkbox');
+        const selectAllCheckbox = document.getElementById('selectAll');
+        if (allCheckboxes.length > 0) {
+            selectAllCheckbox.checked = count === allCheckboxes.length;
+        }
+    }
+
+    // Bulk delete function
+    function bulkDelete() {
+        const checkboxes = document.querySelectorAll('.qr-checkbox:checked');
+        const ids = Array.from(checkboxes).map(cb => cb.value);
+        
+        if (ids.length === 0) {
+            alert('Please select at least one QR code to delete.');
+            return;
+        }
+
+        if (!confirm(`Are you sure you want to delete ${ids.length} QR code(s)? This action cannot be undone.`)) {
+            return;
+        }
+
+        // Create form and submit
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '{{ route("admin.qrcodes.bulkDelete") }}';
+        
+        // Add CSRF token
+        const csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = '_token';
+        csrfInput.value = '{{ csrf_token() }}';
+        form.appendChild(csrfInput);
+
+        // Add method spoofing
+        const methodInput = document.createElement('input');
+        methodInput.type = 'hidden';
+        methodInput.name = '_method';
+        methodInput.value = 'DELETE';
+        form.appendChild(methodInput);
+
+        // Add selected IDs
+        ids.forEach(id => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'ids[]';
+            input.value = id;
+            form.appendChild(input);
+        });
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
     // Close modals when clicking outside
     document.getElementById('bulkModal').addEventListener('click', function(e) {
         if (e.target === this) {
@@ -288,6 +377,40 @@
             closePrintModal();
         }
     });
+
+    // Truncate all QR codes
+    function truncateQRCodes() {
+        if (!confirm('⚠️ WARNING: This will DELETE ALL QR CODES permanently!\n\nThis action cannot be undone. Are you absolutely sure?')) {
+            return;
+        }
+
+        // Double confirmation
+        if (!confirm('This is your last chance! All QR codes will be permanently deleted. Continue?')) {
+            return;
+        }
+
+        // Create form and submit
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '{{ route("admin.qrcodes.truncate") }}';
+        
+        // Add CSRF token
+        const csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = '_token';
+        csrfInput.value = '{{ csrf_token() }}';
+        form.appendChild(csrfInput);
+
+        // Add method spoofing
+        const methodInput = document.createElement('input');
+        methodInput.type = 'hidden';
+        methodInput.name = '_method';
+        methodInput.value = 'DELETE';
+        form.appendChild(methodInput);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
 </script>
 @endpush
 @endsection
