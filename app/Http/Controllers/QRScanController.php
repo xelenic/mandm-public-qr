@@ -35,18 +35,23 @@ class QRScanController extends Controller
             return redirect()->route('qr.scan', ['code' => $code]);
         }
 
-        // Validate the form
+        // Validate the form (Personal Details)
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
+            'accept_terms' => 'accepted',
+            // Optional legacy field (if present)
+            'email' => 'nullable|email|max:255',
         ]);
+
+        $fullName = trim(($validated['first_name'] ?? '') . ' ' . ($validated['last_name'] ?? ''));
 
         // Create the scan record
         Scan::create([
             'qr_code_id' => $qrCode->id,
-            'name' => $validated['name'],
-            'email' => $validated['email'],
+            'name' => $fullName,
+            'email' => $validated['email'] ?? null,
             'phone' => $validated['phone'],
             'ip_address' => $request->ip(),
         ]);

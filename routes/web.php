@@ -16,6 +16,11 @@ Route::get('/', function () {
 Route::get('/qr/{code}', [QRScanController::class, 'show'])->name('qr.scan');
 Route::post('/qr/{code}', [QRScanController::class, 'submit'])->name('qr.submit');
 
+// Public Campaign Info Pages (linked from the QR landing menu)
+Route::view('/campaign-details', 'qr.campaign-details')->name('campaign.details');
+Route::view('/terms-and-conditions', 'qr.terms-and-conditions')->name('campaign.terms');
+Route::view('/winners-gallery', 'qr.winners-gallery')->name('campaign.winners');
+
 // Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
     // Authentication Routes
