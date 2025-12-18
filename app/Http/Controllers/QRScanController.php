@@ -33,6 +33,34 @@ class QRScanController extends Controller
     }
 
     /**
+     * Show verification page with form data
+     */
+    public function verify(Request $request, $code)
+    {
+        $qrCode = QRCode::where('code', $code)->with('gift')->firstOrFail();
+
+        // Check if already scanned
+        if ($qrCode->is_scanned) {
+            return redirect()->route('qr.scan', ['code' => $code]);
+        }
+
+        // Validate the form (Personal Details)
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'accept_terms' => 'accepted',
+        ]);
+
+        return view('qr.verify', [
+            'qrCode' => $qrCode,
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name'],
+            'phone' => $validated['phone'],
+        ]);
+    }
+
+    /**
      * Process the form submission and reveal the gift
      */
     public function submit(Request $request, $code)
