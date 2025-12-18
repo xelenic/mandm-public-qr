@@ -152,26 +152,26 @@
 </head>
 <body>
     <div class="how-to-join-container">
-        <h1 class="main-title">HOW TO JOIN</h1><a href="http://mandm.test/qr/MM-UJJCTWPJ3D" class="close-btn">×</a>
+        <h1 class="main-title">HOW TO JOIN</h1><a href="{{url('')}}/qr/MM-UJJCTWPJ3D" class="close-btn">×</a>
 
         <div class="top-section">
-            <img src="http://mandm.test/qr_portal/Elements/Logo.png" alt="M&amp;M's Logo" class="mms-logo" style="
+            <img src="{{url('')}}/qr_portal/Elements/Logo.png" alt="M&amp;M's Logo" class="mms-logo" style="
     left: 110px;
     display: none;
 ">
 
 
 
-            <img src="http://mandm.test/qr_portal/Elements/left_bell.png" alt="Confetti" class="confetti-left" style="
+            <img src="{{url('')}}/qr_portal/Elements/left_bell.png" alt="Confetti" class="confetti-left" style="
     position: absolute;
     left: 24px;
     width: 110px;
     height: 139px;
     top: -49px;
 ">
-            <img src="http://mandm.test/qr_portal/Elements/left_bell.png" alt="Confetti" class="confetti-right" style="transform: scaleX(-1);position: absolute;left: 197px;width: 110px;height: 139px;top: -44px;">
+            <img src="{{url('')}}/qr_portal/Elements/left_bell.png" alt="Confetti" class="confetti-right" style="transform: scaleX(-1);position: absolute;left: 197px;width: 110px;height: 139px;top: -44px;">
 
-            <img src="http://mandm.test/qr_portal/Elements/gift.png" alt="Gift Box" class="gift-box" style="
+            <img src="{{url('')}}/qr_portal/Elements/gift.png" alt="Gift Box" class="gift-box" style="
     position: absolute;
     left: 120px;
     top: -50px;
@@ -181,7 +181,7 @@
         <div class="instruction-box" style="margin-top: unset;">
             <div class="step-heading">Step 1:-</div>
             <p class="step-text">To participate, purchase a M&amp;M'S® M&amp;M's Limited Edition Christmas Advent Calendar Box</p>
-            <img src="http://mandm.test/qr_portal/Elements/middle_house_gift.png" alt="M&amp;M's Advent Calendar Box" class="product-image">
+            <img src="{{url('')}}/qr_portal/Elements/middle_house_gift.png" alt="M&amp;M's Advent Calendar Box" class="product-image">
 
             <div class="step-heading" style="margin-top: 30px;">Step 2:-</div>
             <p class="step-text">Locate the QR code inside your box, scan it, and enter your details on this site to redeem your prize instantly.</p>
