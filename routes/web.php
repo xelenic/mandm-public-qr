@@ -14,6 +14,7 @@ Route::get('/', function () {
 
 // Public QR Code Scanning Routes
 Route::get('/qr/{code}', [QRScanController::class, 'show'])->name('qr.scan');
+Route::post('/qr/{code}/verify', [QRScanController::class, 'verify'])->name('qr.verify');
 Route::post('/qr/{code}', [QRScanController::class, 'submit'])->name('qr.submit');
 Route::get('/qr/{code}/how-to-join', [QRScanController::class, 'howToJoin'])->name('qr.how-to-join');
 

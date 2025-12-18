@@ -199,7 +199,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
             </div>
 
             <!-- Claim form (Personal Details) -->
-            <form id="claimForm" class="form-box personal-details-box" method="POST" action="{{ route('qr.submit', ['code' => $qrCode->code]) }}" hidden>
+            <form id="claimForm" class="form-box personal-details-box" method="POST" action="{{ route('qr.verify', ['code' => $qrCode->code]) }}" hidden>
                 @csrf
                 <div class="mb-3">
                     <div class="form-label">Personal Details</div>
@@ -289,6 +289,30 @@ var ajax_object = {"ajax_url":"https:\/\/mmsfestivesurewin.com\/wp-admin\/admin-
     if (urlParams.get('menu') === '1') {
       hide(screen1);
       show(screen2);
+      // Clean up URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // Check if returning from verify page - show form with pre-filled data
+    if (urlParams.get('edit') === '1') {
+      hide(screen1);
+      show(screen2);
+      show(claimForm);
+      hide(menuButtons);
+      hide(backToScreen1);
+
+      // Pre-fill form fields
+      const firstName = urlParams.get('first_name');
+      const lastName = urlParams.get('last_name');
+      const phone = urlParams.get('phone');
+
+      if (firstName) document.getElementById('first_name').value = decodeURIComponent(firstName);
+      if (lastName) document.getElementById('last_name').value = decodeURIComponent(lastName);
+      if (phone) document.getElementById('mobile_number').value = decodeURIComponent(phone);
+
+      // Check terms checkbox
+      document.getElementById('accept_terms').checked = true;
+
       // Clean up URL
       window.history.replaceState({}, document.title, window.location.pathname);
     }
