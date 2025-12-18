@@ -15,6 +15,7 @@ Route::get('/', function () {
 // Public QR Code Scanning Routes
 Route::get('/qr/{code}', [QRScanController::class, 'show'])->name('qr.scan');
 Route::post('/qr/{code}', [QRScanController::class, 'submit'])->name('qr.submit');
+Route::get('/qr/{code}/how-to-join', [QRScanController::class, 'howToJoin'])->name('qr.how-to-join');
 
 // Public Campaign Info Pages (linked from the QR landing menu)
 Route::view('/campaign-details', 'qr.campaign-details')->name('campaign.details');

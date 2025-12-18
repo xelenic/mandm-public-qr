@@ -24,6 +24,15 @@ class QRScanController extends Controller
     }
 
     /**
+     * Show the "How to Join" page
+     */
+    public function howToJoin($code)
+    {
+        $qrCode = QRCode::where('code', $code)->with('gift')->firstOrFail();
+        return view('qr.how-to-join', compact('qrCode'));
+    }
+
+    /**
      * Process the form submission and reveal the gift
      */
     public function submit(Request $request, $code)
@@ -62,7 +71,7 @@ class QRScanController extends Controller
             'scanned_at' => now(),
         ]);
 
-        // Show the gift reveal page
-        return view('qr.reveal', compact('qrCode'));
+        // Show the "How to Join" page
+        return view('qr.how-to-join', compact('qrCode'));
     }
 }
