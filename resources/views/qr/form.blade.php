@@ -231,6 +231,9 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
             </form>
 
             <a href="#" id="backToScreen1" class="back-link">Back</a>
+
+            <!-- Bottom corner images -->
+
         </section>
 
          <div class="footer">
@@ -240,7 +243,13 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
     </div>
 
 
+    <div class="footer-images" style="display: flex;justify-content: space-between;align-items: flex-end;width: 100%;margin-top: unset;padding: 0 10px;">
+        <img src="{{url('qr_portal')}}/Elements/leftcorner-img.png" alt="Left Corner" style="max-width: 30%; height: auto;">
+        <img src="{{url('qr_portal')}}/Elements/rightcorner-img.png" alt="Right Corner" style="max-width: 30%; height: auto;">
     </div>
+    </div>
+
+
     <script type="speculationrules">
 {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/twentytwentyfive-child\/*","\/wp-content\/themes\/twentytwentyfive\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 </script>
@@ -274,6 +283,15 @@ var ajax_object = {"ajax_url":"https:\/\/mmsfestivesurewin.com\/wp-admin\/admin-
 
     function show(el) { if (el) el.hidden = false; }
     function hide(el) { if (el) el.hidden = true; }
+
+    // Check if returning from "How to Join" page - show menu
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('menu') === '1') {
+      hide(screen1);
+      show(screen2);
+      // Clean up URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
 
     if (unwrapBtn) {
       unwrapBtn.addEventListener('click', function (e) {

@@ -152,7 +152,8 @@
 </head>
 <body>
     <div class="how-to-join-container">
-        <h1 class="main-title">HOW TO JOIN</h1><a href="{{url('')}}/qr/MM-UJJCTWPJ3D" class="close-btn">×</a>
+        <h1 class="main-title">HOW TO JOIN</h1>
+        <a href="{{ route('qr.scan', ['code' => $qrCode->code]) }}?menu=1" class="close-btn">×</a>
 
         <div class="top-section">
             <img src="{{url('')}}/qr_portal/Elements/Logo.png" alt="M&amp;M's Logo" class="mms-logo" style="
