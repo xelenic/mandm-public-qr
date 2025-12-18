@@ -70,7 +70,6 @@
             opacity: 0.7;
         }
         .main-title {
-            font-family: var(--font-sans-bold);
             font-size: 42px;
             font-weight: 700;
             color: #D70100;
@@ -113,7 +112,7 @@
             margin-bottom: 15px;
         }
         .step-text {
-            font-family: var(--font-sans-regular);
+            /* font-family: var(--font-sans-regular); */
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 20px;
