@@ -189,13 +189,12 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
         <!-- Screen 2 (matches mock #2) -->
         <section id="screen-2" class="qr-screen" hidden>
             <div class="menu-hero">
-                <img src="{{url('qr_portal')}}/22.png" alt="M&amp;M Characters">
+                <img src="{{url('qr_portal')}}/Elements/Crew.png" alt="M&amp;M Characters">
             </div>
 
             <div class="menu-buttons" id="menuButtons">
                 <a href="#" id="claimBtn" class="menu-btn claim-btn">Claim your Prize</a>
-                <a href="{{ route('qr.how-to-join', ['code' => $qrCode->code]) }}" class="menu-btn">How to Join</a>
-                <a href="{{ url('/campaign-details') }}" class="menu-btn">Campaign Details</a>
+                <a href="{{ route('qr.how-to-join', ['code' => $qrCode->code]) }}" class="menu-btn">Campaign Details</a>
                 <a href="{{ url('/terms-and-conditions') }}" class="menu-btn">Terms &amp; Conditions</a>
                 <a href="{{ url('/winners-gallery') }}" class="menu-btn">Winners Gallery</a>
             </div>
