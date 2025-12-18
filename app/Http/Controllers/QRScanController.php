@@ -99,7 +99,7 @@ class QRScanController extends Controller
             'scanned_at' => now(),
         ]);
 
-        // Show the "How to Join" page
-        return view('qr.how-to-join', compact('qrCode'));
+        // Show the gift reveal page
+        return view('qr.reveal', compact('qrCode'));
     }
 }

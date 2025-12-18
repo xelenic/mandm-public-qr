@@ -1,226 +1,177 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Congratulations! - M&M Gift Campaign</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Congratulations! - M&M's Festive Sure-Win</title>
+    <link rel="stylesheet" href="{{url('qr_portal')}}/font-awesome.min.css">
+    <link rel="stylesheet" id="bootstrap-css-css" href="{{url('qr_portal')}}/bootstrap.min.css" media="all">
+    <link rel="stylesheet" id="mytheme-custom-style-css" href="{{url('qr_portal')}}/style(2).css" media="all">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            font-family: var(--font-sans-var);
+            background: #FFD210;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative;
+        }
+        .reveal-container {
+            max-width: 768px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+        }
+        .header-section {
+            background: #D70100;
             padding: 20px;
+            height: 128px;
+            overflow: visible;
+            position: relative;
         }
-
-        .container {
-            max-width: 600px;
-            width: 100%;
-            background: white;
+        .header-section .image1 {
+            position: absolute;
+            top: 0;
+            left: 23%;
+            width: 78px;
+        }
+        .header-section .image2 {
+            position: absolute;
+            top: 0px;
+            left: 26%;
+            width: 117px;
+        }
+        .header-section .center-logo {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 32%;
+        }
+        .header-section .image3 {
+            position: absolute;
+            top: 0;
+            right: 20.1%;
+            width: 178px;
+        }
+        .header-section .image4 {
+            position: absolute;
+            top: 0;
+            right: 20.5%;
+            width: 9%;
+        }
+        .prize-card {
+            background: #fff;
             border-radius: 20px;
-            padding: 50px 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin: 30px;
+            padding: 30px 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+        .voucher-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto 20px;
+            display: block;
+            border-radius: 10px;
+            border: 2px solid #f0f0f0;
+        }
+        .congrats-text {
+            font-family: var(--font-sans-bold);
+            font-size: 36px;
+            font-weight: 700;
+            color: #D70100;
             text-align: center;
-            animation: fadeInUp 0.6s ease-out;
+            margin-bottom: 10px;
         }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .confetti {
-            font-size: 60px;
-            margin-bottom: 20px;
-            animation: bounce 1s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        h1 {
-            font-size: 42px;
-            color: #1f2937;
+        .you-won-text {
+            font-family: var(--font-sans-regular);
+            font-size: 20px;
+            color: #D70100;
+            text-align: center;
             margin-bottom: 15px;
-            font-weight: 800;
         }
-
-        .subtitle {
-            color: #6b7280;
+        .prize-amount {
+            font-family: var(--font-sans-bold);
+            font-size: 48px;
+            font-weight: 700;
+            color: #D70100;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .prize-type {
+            font-family: var(--font-sans-regular);
             font-size: 18px;
-            margin-bottom: 40px;
-        }
-
-        .gift-card {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border: 3px solid #fbbf24;
-            border-radius: 15px;
-            padding: 40px 30px;
+            color: #D70100;
+            text-align: center;
             margin-bottom: 30px;
         }
-
-        .gift-title {
-            font-size: 32px;
-            color: #92400e;
+        .got-it-btn {
+            background: #D70100;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-family: var(--font-sans-bold);
+            font-size: 20px;
             font-weight: 700;
-            margin-bottom: 10px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            width: 200px;
         }
-
-        .gift-type {
-            display: inline-block;
-            padding: 8px 20px;
-            background: white;
-            color: #92400e;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-top: 10px;
+        .got-it-btn:hover {
+            background: #b30000;
         }
-
-        .gift-description {
-            color: #78350f;
-            font-size: 16px;
-            margin-top: 15px;
-            line-height: 1.6;
-        }
-
-        .info-section {
-            background: #f9fafb;
-            border-radius: 10px;
+        .footer {
+            text-align: center;
             padding: 20px;
-            margin-bottom: 25px;
-            text-align: left;
+            color: #5A1F06;
+            font-size: 12px;
+            font-family: var(--font-sans-regular);
         }
-
-        .info-section h3 {
-            color: #374151;
-            font-size: 16px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .info-section p {
-            color: #6b7280;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .code-reference {
-            background: #f3f4f6;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
-        .code-reference strong {
-            color: #374151;
-            font-size: 14px;
-        }
-
-        .code-reference code {
-            display: inline-block;
-            margin-top: 5px;
-            padding: 8px 12px;
-            background: white;
-            color: #667eea;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-        }
-
         @media (max-width: 600px) {
-            .container {
-                padding: 40px 25px;
+            .congrats-text {
+                font-size: 28px;
             }
-
-            h1 {
-                font-size: 32px;
+            .prize-amount {
+                font-size: 36px;
             }
-
-            .gift-title {
-                font-size: 24px;
+            .you-won-text {
+                font-size: 16px;
+            }
+            .prize-type {
+                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="success-icon">
-            ✓
+    <div class="reveal-container">
+        <!-- Header with Christmas decorations -->
+        <div class="header-section">
+            <img src="{{url('qr_portal')}}/5947.png" alt="5947" class="image1">
+            <img src="{{url('qr_portal')}}/5946.png" alt="5946" class="image2">
+            <a href="https://mmsfestivesurewin.com/"><img src="{{url('qr_portal')}}/Elements/Logo.png" alt="Logo" class="center-logo"></a>
+            <img src="{{url('qr_portal')}}/5948.png" alt="5948" class="image3">
+            <img src="{{url('qr_portal')}}/5949.png" alt="5949" class="image4">
         </div>
 
-        <h1>Congratulations! 🎉</h1>
-        <p class="subtitle">You've won an amazing gift!</p>
-
-        <div class="gift-card">
-            <div class="gift-title">{{ $qrCode->gift->name }}</div>
-            <span class="gift-type">{{ ucfirst($qrCode->gift->type) }}</span>
-            
-            @if($qrCode->gift->description)
-                <p class="gift-description">{{ $qrCode->gift->description }}</p>
+        <!-- Prize Card -->
+        <div class="prize-card" style="border-style: unset;max-width:fit-content;margin-top: 100px;">
+            @if($qrCode->gift->name == "Spa Ceylon Gift Voucher")
+                <img src="{{url('qr_portal')}}/Elements/5000.png" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
+            @elseif($qrCode->gift->name == "Shagila Dinner Voucher")
+                <img src="{{url('qr_portal')}}/Elements/10000.png" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
             @endif
+
+            <button onclick="window.location.href='{{ route('qr.how-to-join', ['code' => $qrCode->code]) }}'" class="got-it-btn">Got it</button>
         </div>
 
-        <div class="info-section">
-            <h3>📋 What's Next?</h3>
-            <p>
-                Our team will contact you within 2-3 business days to arrange the delivery of your gift.
-                Please keep your reference code handy for verification.
-            </p>
-
-            <div class="code-reference">
-                <strong>Your Reference Code:</strong><br>
-                <code>{{ $qrCode->code }}</code>
-            </div>
-        </div>
-
-        <div class="info-section">
-            <h3>📞 Need Help?</h3>
-            <p>
-                If you have any questions or don't receive a call within 3 business days,
-                please contact our support team with your reference code.
-            </p>
+        <div class="footer">
+            ©2025 Mars or Affiliates
         </div>
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
