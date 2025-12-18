@@ -166,7 +166,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
         <div class="header">
             <img src="{{url('qr_portal')}}/5947.png" alt="5947" class="image1">
             <img src="{{url('qr_portal')}}/5946.png" alt="5946" class="image2">
-             <a href="https://mmsfestivesurewin.com/"><img src="{{url('qr_portal')}}/OL_SG-Xmas-Promo-Masthead-1.png" alt="Logo" class="center-logo"></a>
+             <a href="https://mmsfestivesurewin.com/"><img src="{{url('qr_portal')}}/Elements/Logo.png" alt="Logo" class="center-logo"></a>
 
             <img src="{{url('qr_portal')}}/5948.png" alt="5948" class="image3">
             <img src="{{url('qr_portal')}}/5949.png" alt="5949" class="image4">
