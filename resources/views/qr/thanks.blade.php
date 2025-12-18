@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Congratulations! - M&M's Festive Sure-Win</title>
+    <title>Thank You! - M&M's Festive Sure-Win</title>
     <link rel="stylesheet" href="{{url('qr_portal')}}/font-awesome.min.css">
     <link rel="stylesheet" id="bootstrap-css-css" href="{{url('qr_portal')}}/bootstrap.min.css" media="all">
     <link rel="stylesheet" id="mytheme-custom-style-css" href="{{url('qr_portal')}}/style(2).css" media="all">
@@ -15,7 +15,7 @@
             min-height: 100vh;
             position: relative;
         }
-        .reveal-container {
+        .thanks-container {
             max-width: 768px;
             margin: 0 auto;
             min-height: 100vh;
@@ -27,6 +27,23 @@
             height: 128px;
             overflow: visible;
             position: relative;
+        }
+        .got-it-btn {
+            background: #D70100;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-family: var(--font-sans-bold);
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+        }
+        .got-it-btn:hover {
+            background: #b30000;
         }
         .header-section .image1 {
             position: absolute;
@@ -59,70 +76,74 @@
             right: 20.5%;
             width: 9%;
         }
-        .prize-card {
+        .thanks-card {
             background: #fff;
             border-radius: 20px;
-            margin: 30px;
-            padding: 30px 25px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 40px 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             position: relative;
             z-index: 10;
+            text-align: center;
         }
-        .voucher-image {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            margin: 0 auto 20px;
-            display: block;
-            border-radius: 10px;
-            border: 2px solid #f0f0f0;
+        .thanks-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
         }
-        .congrats-text {
+        .thanks-heading {
             font-family: var(--font-sans-bold);
             font-size: 36px;
             font-weight: 700;
             color: #D70100;
             text-align: center;
-            margin-bottom: 10px;
-        }
-        .you-won-text {
-            font-family: var(--font-sans-regular);
-            font-size: 20px;
-            color: #D70100;
-            text-align: center;
             margin-bottom: 15px;
         }
-        .prize-amount {
-            font-family: var(--font-sans-bold);
-            font-size: 48px;
-            font-weight: 700;
-            color: #D70100;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .prize-type {
+        .thanks-message {
             font-family: var(--font-sans-regular);
             font-size: 18px;
-            color: #D70100;
+            color: #5A1F06;
             text-align: center;
+            line-height: 1.6;
             margin-bottom: 30px;
         }
-        .got-it-btn {
-            background: #D70100;
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            padding: 15px 40px;
-            font-family: var(--font-sans-bold);
-            font-size: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            display: block;
-            margin: 0 auto;
-            width: 200px;
+        .reference-code {
+            background: #f9fafb;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
         }
-        .got-it-btn:hover {
-            background: #b30000;
+        .reference-code-label {
+            font-family: var(--font-sans-regular);
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+        .reference-code-value {
+            font-family: var(--font-sans-bold);
+            font-size: 18px;
+            color: #D70100;
+            letter-spacing: 2px;
+        }
+        .next-steps {
+            font-family: var(--font-sans-regular);
+            font-size: 16px;
+            color: #5A1F06;
+            text-align: left;
+            margin-top: 25px;
+            padding: 20px;
+            background: #fef3c7;
+            border-radius: 10px;
+        }
+        .next-steps h3 {
+            font-family: var(--font-sans-bold);
+            font-size: 18px;
+            color: #D70100;
+            margin-bottom: 10px;
+        }
+        .next-steps p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 8px;
         }
         .footer {
             text-align: center;
@@ -132,23 +153,17 @@
             font-family: var(--font-sans-regular);
         }
         @media (max-width: 600px) {
-            .congrats-text {
+            .thanks-heading {
                 font-size: 28px;
             }
-            .prize-amount {
-                font-size: 36px;
-            }
-            .you-won-text {
-                font-size: 16px;
-            }
-            .prize-type {
+            .thanks-message {
                 font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="reveal-container">
+    <div class="thanks-container">
         <!-- Header with Christmas decorations -->
         <div class="header-section">
             <img src="{{url('qr_portal')}}/5947.png" alt="5947" class="image1">
@@ -158,15 +173,14 @@
             <img src="{{url('qr_portal')}}/5949.png" alt="5949" class="image4">
         </div>
 
-        <!-- Prize Card -->
-        <div class="prize-card" style="border-style: unset;max-width:fit-content;margin-top: 100px;">
-            @if($qrCode->gift->name == "Spa Ceylon Gift Voucher")
-                <img src="{{url('qr_portal')}}/Elements/5000.png" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
-            @elseif($qrCode->gift->name == "Shagila Dinner Voucher")
-                <img src="{{url('qr_portal')}}/Elements/10000.png" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
-            @endif
+        <!-- Thanks Card -->
+        <div class="thanks-card">
 
-            <button onclick="window.location.href='{{ route('qr.thanks', ['code' => $qrCode->code]) }}'" class="got-it-btn">Got it</button>
+            <div class="prize-card" style="border-style: unset;max-width:fit-content;margin-top: 100px;">
+                <img src="{{url('qr_portal')}}/Elements/Hang tight.png" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
+                <button onclick="window.location.href='{{ url('qr', ['code' => $qrCode->code]) }}'" class="got-it-btn">Got it</button>
+
+            </div>
         </div>
 
         <div class="footer">
@@ -175,3 +189,4 @@
     </div>
 </body>
 </html>
+

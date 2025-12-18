@@ -33,6 +33,15 @@ class QRScanController extends Controller
     }
 
     /**
+     * Show the "Thank You" page
+     */
+    public function thanks($code)
+    {
+        $qrCode = QRCode::where('code', $code)->with('gift')->firstOrFail();
+        return view('qr.thanks', compact('qrCode'));
+    }
+
+    /**
      * Show verification page with form data
      */
     public function verify(Request $request, $code)
