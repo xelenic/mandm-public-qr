@@ -195,7 +195,6 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
             <div class="menu-buttons" id="menuButtons">
                 <a href="#" id="claimBtn" class="menu-btn claim-btn">Claim your Prize</a>
                 <a href="{{ route('qr.how-to-join', ['code' => $qrCode->code]) }}" class="menu-btn">Campaign Details</a>
-                <a href="{{ url('/terms-and-conditions') }}" class="menu-btn">Terms &amp; Conditions</a>
                 <a href="{{ url('/winners-gallery') }}" class="menu-btn">Winners Gallery</a>
             </div>
 
