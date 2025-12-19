@@ -17,7 +17,7 @@ class QRScanController extends Controller
 
         // Check if already scanned
         if ($qrCode->is_scanned) {
-            return view('qr.already-scanned', compact('qrCode'));
+            return view('qr.form', compact('qrCode'));
         }
 
         return view('qr.form', compact('qrCode'));

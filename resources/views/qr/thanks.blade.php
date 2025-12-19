@@ -105,6 +105,14 @@
             line-height: 1.6;
             margin-bottom: 8px;
         }
+        .menu-hero {
+            margin: 8px 0 18px;
+        }
+        .menu-hero img {
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+        }
         .footer {
             text-align: center;
             padding: 20px;
@@ -134,11 +142,22 @@
             <img src="{{url('qr_portal')}}/5949.png" alt="5949" class="image4">
         </div>
 
+        <!-- Menu Section -->
+        <div class="menu-hero" style="margin-top: 100px; text-align: center;">
+            <img src="{{url('qr_portal')}}/Elements/Crew.png" alt="M&amp;M Characters">
+        </div>
+
+        <div class="menu-buttons" style="text-align: center; margin: 20px;">
+            <a href="{{ route('qr.scan', ['code' => $qrCode->code]) }}" class="menu-btn claim-btn">Claim your Prize</a>
+            <a href="{{ route('qr.how-to-join', ['code' => $qrCode->code]) }}" class="menu-btn">Campaign Details</a>
+            <a href="{{ url('/winners-gallery') }}" class="menu-btn">Winners Gallery</a>
+        </div>
+
         <!-- Thanks Card -->
         <div class="thanks-card">
 
             <div class="prize-card" style="border-style: unset;max-width:fit-content;margin-top: 100px;padding-bottom: 30px;">
-                <img src="{{url('qr_portal')}}/Elements/Hang tight.png" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
+                <img src="{{url('qr_portal')}}/Elements/Hang tight.jpeg" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
                 <button onclick="window.location.href='{{ url('qr', ['code' => $qrCode->code]) }}'" class="got-it-btn">Got it</button>
 
             </div>

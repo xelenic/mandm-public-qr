@@ -123,9 +123,9 @@
         <!-- Prize Card -->
         <div class="prize-card" style="border-style: unset;max-width:fit-content;margin-top: 100px;">
             @if($qrCode->gift->name == "Spa Ceylon Gift Voucher")
-                <img src="{{url('qr_portal')}}/Elements/5000.png" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
+                <img src="{{url('qr_portal')}}/Elements/5000.jpeg" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
             @elseif($qrCode->gift->name == "Shagila Dinner Voucher")
-                <img src="{{url('qr_portal')}}/Elements/10000.png" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
+                <img src="{{url('qr_portal')}}/Elements/10000.jpeg" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
             @endif
 
             <button onclick="window.location.href='{{ route('qr.thanks', ['code' => $qrCode->code]) }}'" class="got-it-btn">Got it</button>
