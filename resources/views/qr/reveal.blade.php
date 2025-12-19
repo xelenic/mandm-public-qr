@@ -159,8 +159,21 @@
         <div class="prize-card" style="border-style: unset;max-width:fit-content;margin-top: 100px;">
             @if($qrCode->gift->name == "Spa Ceylon Gift Voucher")
                 <img src="{{url('qr_portal')}}/Elements/5000.jpeg" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
+
+                <div style="margin-bottom: 40px;color: #d70200;">
+                    <h2 style="font-size: 30px;color: #d70200;">Congrats</h2>
+                    <div>You won a </div><div style="font-size: 40px;">Rs 5000.00</div>
+                    <div>Spa Ceylon Gift Certificate</div>
+                </div>
+
             @elseif($qrCode->gift->name == "Shagila Dinner Voucher")
                 <img src="{{url('qr_portal')}}/Elements/10000.jpeg" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
+
+                <div style="margin-bottom: 40px;color: #d70200;">
+                    <h2 style="font-size: 30px;color: #d70200;">Congrats</h2>
+                    <div>You won a </div><div style="font-size: 40px;">Rs 10000.00</div>
+                    <div>Shangila Dinner Voucher</div>
+                </div>
             @endif
 
             <button onclick="window.location.href='{{ route('qr.thanks', ['code' => $qrCode->code]) }}'" class="got-it-btn">Got it</button>
