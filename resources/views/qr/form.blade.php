@@ -339,6 +339,14 @@ var ajax_object = {"ajax_url":"https:\/\/mmsfestivesurewin.com\/wp-admin\/admin-
     if (claimBtn) {
       claimBtn.addEventListener('click', function (e) {
         e.preventDefault();
+
+        // Check if QR code is already scanned
+        @if($qrCode->is_scanned)
+          // Redirect to already-scanned page
+          window.location.href = '{{ route("qr.already-scanned", ["code" => $qrCode->code]) }}';
+          return;
+        @endif
+
         show(claimForm);
         hide(menuButtons);
         hide(backToScreen1);

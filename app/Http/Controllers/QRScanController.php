@@ -15,12 +15,16 @@ class QRScanController extends Controller
     {
         $qrCode = QRCode::where('code', $code)->with('gift')->firstOrFail();
 
-        // Check if already scanned
-        if ($qrCode->is_scanned) {
-            return view('qr.form', compact('qrCode'));
-        }
-
         return view('qr.form', compact('qrCode'));
+    }
+
+    /**
+     * Show the "Already Scanned" page
+     */
+    public function alreadyScanned($code)
+    {
+        $qrCode = QRCode::where('code', $code)->with('gift')->firstOrFail();
+        return view('qr.already-scanned', compact('qrCode'));
     }
 
     /**
@@ -50,7 +54,7 @@ class QRScanController extends Controller
 
         // Check if already scanned
         if ($qrCode->is_scanned) {
-            return redirect()->route('qr.scan', ['code' => $code]);
+            return redirect()->route('qr.already-scanned', ['code' => $code]);
         }
 
         // Validate the form (Personal Details)
@@ -78,7 +82,7 @@ class QRScanController extends Controller
 
         // Check if already scanned
         if ($qrCode->is_scanned) {
-            return redirect()->route('qr.scan', ['code' => $code]);
+            return redirect()->route('qr.already-scanned', ['code' => $code]);
         }
 
         // Validate the form (Personal Details)

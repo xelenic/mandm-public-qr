@@ -142,16 +142,7 @@
             <img src="{{url('qr_portal')}}/5949.png" alt="5949" class="image4">
         </div>
 
-        <!-- Menu Section -->
-        <div class="menu-hero" style="margin-top: 100px; text-align: center;">
-            <img src="{{url('qr_portal')}}/Elements/Crew.png" alt="M&amp;M Characters">
-        </div>
 
-        <div class="menu-buttons" style="text-align: center; margin: 20px;">
-            <a href="{{ route('qr.scan', ['code' => $qrCode->code]) }}" class="menu-btn claim-btn">Claim your Prize</a>
-            <a href="{{ route('qr.how-to-join', ['code' => $qrCode->code]) }}" class="menu-btn">Campaign Details</a>
-            <a href="{{ url('/winners-gallery') }}" class="menu-btn">Winners Gallery</a>
-        </div>
 
         <!-- Thanks Card -->
         <div class="thanks-card">
