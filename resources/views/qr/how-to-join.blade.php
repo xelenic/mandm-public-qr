@@ -133,6 +133,12 @@
             color: #fff;
             font-size: 12px;
         }
+        .help-text {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
         /* Preloader Styles */
         .preloader {
             position: fixed;
@@ -224,6 +230,7 @@
         </div>
 
         <div class="footer-section">
+            <div class="help-text">Need help? Just call 077 255 3436.</div>
             ©2025 Mars or Affiliates
         </div>
     </div>

@@ -194,6 +194,18 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
         .personal-details-box .back-link {
             color: #ffffff;
         }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #5A1F06;
+            font-size: 12px;
+        }
+        .help-text {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #5A1F06;
+        }
     </style>
 
     <div class="main">
@@ -272,6 +284,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
         </section>
 
          <div class="footer">
+            <div class="help-text">Need help? Just call 077 255 3436.</div>
             © 2025 Mars or Affiliates
         </div>
 
