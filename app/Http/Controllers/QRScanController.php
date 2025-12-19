@@ -97,13 +97,15 @@ class QRScanController extends Controller
 
         $fullName = trim(($validated['first_name'] ?? '') . ' ' . ($validated['last_name'] ?? ''));
 
-        // Create the scan record
-        Scan::create([
+        // Create the scan record with explicit timestamp
+        $scan = Scan::create([
             'qr_code_id' => $qrCode->id,
             'name' => $fullName,
             'email' => $validated['email'] ?? null,
             'phone' => $validated['phone'],
             'ip_address' => $request->ip(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         // Mark QR code as scanned

@@ -49,10 +49,11 @@
             </div>
 
             <div style="margin-bottom: 20px;">
-                <strong style="color: #6b7280; display: block; margin-bottom: 5px;">Scan Date & Time:</strong>
+                <strong style="color: #6b7280; display: block; margin-bottom: 5px;">Submission Date & Time:</strong>
                 <div style="font-size: 16px; color: #1f2937;">
                     {{ $scan->created_at->format('l, F j, Y') }}<br>
-                    <span style="color: #6b7280;">{{ $scan->created_at->format('h:i A') }}</span>
+                    <span style="color: #6b7280; font-weight: 600;">{{ $scan->created_at->format('h:i:s A') }}</span><br>
+                    <small style="color: #9ca3af; font-size: 12px; margin-top: 5px; display: block;">{{ $scan->created_at->diffForHumans() }}</small>
                 </div>
             </div>
         </div>

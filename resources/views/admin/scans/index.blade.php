@@ -69,7 +69,7 @@
                     <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">QR Code</th>
                     <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">Gift</th>
                     <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">Status</th>
-                    <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">Scan Date</th>
+                    <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">Submission Date & Time</th>
                     <th style="padding: 8px 10px; text-align: left; font-weight: 600; color: #374151; font-size: 12px;">Actions</th>
                 </tr>
             </thead>
@@ -120,7 +120,8 @@
                             </form>
                         </td>
                         <td style="padding: 8px 10px; font-size: 12px; white-space: nowrap;">
-                            {{ $scan->created_at->format('M d, Y H:i') }}
+                            {{ $scan->created_at->format('M d, Y H:i:s') }}<br>
+                            <small style="color: #6b7280; font-size: 10px;">{{ $scan->created_at->diffForHumans() }}</small>
                         </td>
                         <td style="padding: 8px 10px;">
                             <div style="display: flex; gap: 5px; white-space: nowrap;">

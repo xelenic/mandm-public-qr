@@ -15,6 +15,11 @@ class Scan extends Model
         'gift_status',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     public function qrCode()
     {
         return $this->belongsTo(QRCode::class, 'qr_code_id');
