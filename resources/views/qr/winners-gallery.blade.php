@@ -45,7 +45,7 @@
 
             <div class="page-card">
                 <p class="term_text" style="text-align:left; margin-top:0; margin-bottom:0;">
-                    Add your winners gallery content here.
+                    Coming Soon Please Check Back Later.
                 </p>
                 <a href="#" class="page-back" onclick="history.back(); return false;">Back</a>
             </div>

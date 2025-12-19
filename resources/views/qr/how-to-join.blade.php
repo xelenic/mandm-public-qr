@@ -181,7 +181,7 @@
 
         <div class="instruction-box" style="margin-top: unset;">
             <div class="step-heading">Step 1:-</div>
-            <p class="step-text">To participate, purchase a M&amp;M'S® M&amp;M's Limited Edition Christmas Advent Calendar Box</p>
+            <p class="step-text">To participate, purchase a M&amp;M'S® Limited Edition Christmas Advent Calendar Box</p>
             <img src="{{url('')}}/qr_portal/Elements/middle_house_gift.png" alt="M&amp;M's Advent Calendar Box" class="product-image">
 
             <div class="step-heading" style="margin-top: 30px;">Step 2:-</div>
