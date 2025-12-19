@@ -76,12 +76,65 @@
             margin: 0;
             font-family: var(--font-sans-regular);
         }
+        .back-to-home-btn {
+            display: inline-block;
+            background: #D70100;
+            color: #ffffff;
+            padding: 14px 30px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            margin: 30px auto;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .back-to-home-btn:hover {
+            background: #b00100;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .button-container {
+            text-align: center;
+            padding: 0 20px;
+        }
         .footer {
             text-align: center;
             padding: 20px;
             color: #5A1F06;
             font-size: 12px;
             font-family: var(--font-sans-regular);
+        }
+        /* Preloader Styles */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #FFD210;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .preloader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #D70100;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         @media (max-width: 600px) {
             .warning-heading {
@@ -97,6 +150,11 @@
     </style>
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+
     <div class="already-scanned-container" style="padding-top: 0px;">
         <!-- Header with multiple hanging images and logos -->
         <div class="header" style="z-index: 1000;">
@@ -132,10 +190,27 @@
             </div>
         </div>
 
+        <div class="button-container">
+            <a href="{{ route('qr.scan', ['code' => $qrCode->code]) }}" class="back-to-home-btn">Back to Home</a>
+        </div>
+
         <div class="footer">
             ©2025 Mars or Affiliates
         </div>
     </div>
+
+    <script>
+        // Hide preloader when page is loaded
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.classList.add('hidden');
+                setTimeout(function() {
+                    preloader.style.display = 'none';
+                }, 500);
+            }
+        });
+    </script>
 </body>
 </html>
 
