@@ -39,7 +39,6 @@
             text-align: center;
         }
         .verify-instructions {
-            font-family: var(--font-sans-regular);
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 25px;
@@ -80,7 +79,6 @@
             border: none;
             border-radius: 50px;
             padding: 15px;
-            font-family: var(--font-sans-bold);
             font-size: 18px;
             font-weight: 700;
             cursor: pointer;
@@ -98,7 +96,6 @@
             border: none;
             border-radius: 50px;
             padding: 15px;
-            font-family: var(--font-sans-bold);
             font-size: 18px;
             font-weight: 700;
             cursor: pointer;

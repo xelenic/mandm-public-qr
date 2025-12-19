@@ -21,20 +21,12 @@
             min-height: 100vh;
             position: relative;
         }
-        .header-section {
-            background: #D70100;
-            padding: 20px;
-            height: 128px;
-            overflow: visible;
-            position: relative;
-        }
         .got-it-btn {
             background: #D70100;
             color: #fff;
             border: none;
             border-radius: 50px;
             padding: 15px 40px;
-            font-family: var(--font-sans-bold);
             font-size: 20px;
             font-weight: 700;
             cursor: pointer;
@@ -45,42 +37,10 @@
         .got-it-btn:hover {
             background: #b30000;
         }
-        .header-section .image1 {
-            position: absolute;
-            top: 0;
-            left: 23%;
-            width: 78px;
-        }
-        .header-section .image2 {
-            position: absolute;
-            top: 0px;
-            left: 26%;
-            width: 117px;
-        }
-        .header-section .center-logo {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 32%;
-        }
-        .header-section .image3 {
-            position: absolute;
-            top: 0;
-            right: 20.1%;
-            width: 178px;
-        }
-        .header-section .image4 {
-            position: absolute;
-            top: 0;
-            right: 20.5%;
-            width: 9%;
-        }
         .thanks-card {
             background: #fff;
             border-radius: 20px;
             margin: 20px;
-            padding: 40px 25px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             position: relative;
             z-index: 10;
@@ -163,12 +123,13 @@
     </style>
 </head>
 <body>
-    <div class="thanks-container">
-        <!-- Header with Christmas decorations -->
-        <div class="header-section">
+    <div class="thanks-container" style="padding-top: 0px;">
+        <!-- Header with multiple hanging images and logos -->
+        <div class="header" style="z-index: 1000;">
             <img src="{{url('qr_portal')}}/5947.png" alt="5947" class="image1">
             <img src="{{url('qr_portal')}}/5946.png" alt="5946" class="image2">
-            <a href="https://mmsfestivesurewin.com/"><img src="{{url('qr_portal')}}/Elements/Logo.png" alt="Logo" class="center-logo"></a>
+             <a href="https://mmsfestivesurewin.com/"><img src="{{url('qr_portal')}}/Elements/Logo.png" alt="Logo" class="center-logo"></a>
+
             <img src="{{url('qr_portal')}}/5948.png" alt="5948" class="image3">
             <img src="{{url('qr_portal')}}/5949.png" alt="5949" class="image4">
         </div>
@@ -176,7 +137,7 @@
         <!-- Thanks Card -->
         <div class="thanks-card">
 
-            <div class="prize-card" style="border-style: unset;max-width:fit-content;margin-top: 100px;">
+            <div class="prize-card" style="border-style: unset;max-width:fit-content;margin-top: 100px;padding-bottom: 30px;">
                 <img src="{{url('qr_portal')}}/Elements/Hang tight.png" alt="Gift Voucher" class="voucher-image" style="border-style: unset;width: 100%;">
                 <button onclick="window.location.href='{{ url('qr', ['code' => $qrCode->code]) }}'" class="got-it-btn">Got it</button>
 
